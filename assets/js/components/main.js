@@ -8,7 +8,6 @@
 window.VocalSearch = window.VocalSearch || {};
 
 ( function( window, document, $, plugin ) {
-	console.log('loaded');
 	let $c = {};
 
 	plugin.init = function() {
@@ -19,14 +18,19 @@ window.VocalSearch = window.VocalSearch || {};
 	plugin.cache = function() {
 		$c.window = $( window );
 		$c.body = $( document.body );
+		$c.search = $( '.search-field' );
 	};
 
 	plugin.bindEvents = function() {
+		$c.search.on('click', $c.listen);
 	};
 
 	$c.listen = function() {
 		var commands = {
-			'search *term': $c.search
+			'search for *term': function(term) {
+				$c.search.val( term );
+				$('form.search-form').submit();
+			}
 		};
 
 		annyang.addCommands(commands);
@@ -34,9 +38,5 @@ window.VocalSearch = window.VocalSearch || {};
 		annyang.start();
 	};
 
-	$c.search = function(term) {
-		console.log(term);
-	};
-
 	$( plugin.init );
-}( window, document, require( 'jquery' ), window.VocalSearch ) );
+}( window, document, jQuery, window.VocalSearch ) );
