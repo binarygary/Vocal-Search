@@ -115,6 +115,14 @@ final class Vocal_Search {
 	protected static $single_instance = null;
 
 	/**
+	 * Instance of VS_Search
+	 *
+	 * @since0.1.0
+	 * @var VS_Search
+	 */
+	protected $search;
+
+	/**
 	 * Creates or returns an instance of this class.
 	 *
 	 * @since   0.1.0
@@ -145,8 +153,8 @@ final class Vocal_Search {
 	 * @since  0.1.0
 	 */
 	public function plugin_classes() {
-		// $this->plugin_class = new VS_Plugin_Class( $this );
 
+		$this->search = new VS_Search( $this );
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
@@ -302,6 +310,7 @@ final class Vocal_Search {
 			case 'basename':
 			case 'url':
 			case 'path':
+			case 'search':
 				return $this->$field;
 			default:
 				throw new Exception( 'Invalid ' . __CLASS__ . ' property: ' . $field );
