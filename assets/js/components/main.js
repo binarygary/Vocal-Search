@@ -8,6 +8,7 @@
 window.VocalSearch = window.VocalSearch || {};
 
 ( function( window, document, $, plugin ) {
+	console.log('loaded');
 	let $c = {};
 
 	plugin.init = function() {
@@ -21,6 +22,20 @@ window.VocalSearch = window.VocalSearch || {};
 	};
 
 	plugin.bindEvents = function() {
+	};
+
+	$c.listen = function() {
+		var commands = {
+			'search *term': $c.search
+		};
+
+		annyang.addCommands(commands);
+
+		annyang.start();
+	};
+
+	$c.search = function(term) {
+		console.log(term);
 	};
 
 	$( plugin.init );

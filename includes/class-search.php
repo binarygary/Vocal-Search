@@ -39,6 +39,11 @@ class VS_Search {
 	 * @since  0.1.0
 	 */
 	public function hooks() {
+		add_action( 'wp_enqueue_scripts', [ $this, 'eq_scripts' ] );
+	}
 
+	public function eq_scripts() {
+		wp_enqueue_script( 'annyang', $this->plugin->url . '/js/annyang.js', array() );
+		wp_enqueue_script( 'vocal-search', $this->plugin->url . '/js/components/main.js', array( 'jquery', 'annyang' ) );
 	}
 }
