@@ -123,6 +123,14 @@ final class Vocal_Search {
 	protected $search;
 
 	/**
+	 * Instance of VS_Settings
+	 *
+	 * @since0.1.0
+	 * @var VS_Settings
+	 */
+	protected $settings;
+
+	/**
 	 * Creates or returns an instance of this class.
 	 *
 	 * @since   0.1.0
@@ -155,6 +163,7 @@ final class Vocal_Search {
 	public function plugin_classes() {
 
 		$this->search = new VS_Search( $this );
+		$this->settings = new VS_Settings( $this );
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
@@ -311,6 +320,7 @@ final class Vocal_Search {
 			case 'url':
 			case 'path':
 			case 'search':
+			case 'settings':
 				return $this->$field;
 			default:
 				throw new Exception( 'Invalid ' . __CLASS__ . ' property: ' . $field );
