@@ -1,0 +1,20 @@
+{
+  "generator-plugin-wp": {
+    "name": "Vocal Search",
+    "homepage": "https://www.binarygary.com",
+    "description": "Search your WP with your voice.",
+    "version": "0.1.0",
+    "author": "Binary Gary",
+    "authoremail": "plugins@binarygary.com",
+    "authorurl": "https://www.binarygary.com",
+    "license": "GPLv2",
+    "slug": "vocal-search",
+    "classname": "Vocal_Search",
+    "mainclassname": "Vocal_Search",
+    "classprefix": "VS_",
+    "prefix": "vocal_search",
+    "year": 2017,
+    "currentVersionWP": "4.7.2",
+    "plugingenversion": "0.19.7"
+  }
+}
