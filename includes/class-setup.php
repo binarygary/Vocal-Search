@@ -21,6 +21,14 @@ class VS_Setup {
 	 */
 	protected $plugin = null;
 
+	protected $settings = null;
+
+	protected $phrase = null;
+
+	protected $form_selector = null;
+
+	protected $input_selector = null;
+
 	/**
 	 * Constructor.
 	 *
@@ -39,6 +47,28 @@ class VS_Setup {
 	 * @since  0.1.0
 	 */
 	public function hooks() {
+		add_action( 'init', [ $this, 'setup_vocal_search_params' ] );
+	}
+
+	public function setup_vocal_search_params() {
+		$this->settings = get_option( 'vocal_search_settings' );
+
+		$this->phrase         = $this->setup_phrase();
+		$this->form_selector  = $this->setup_form_selector();
+		$this->input_selector = $this->setup_input_selector();
+
+	}
+
+	protected function setup_phrase() {
+		if ( isset( $this->settings['phrase'] ) && ! empty( $this->settings ) ) {
+			return $this->settings['phrase'];
+		}
+
+		return __( 'Search for', 'vocal-search' );
+
+	}
+
+	protected function setup_form_selector() {
 
 	}
 }
