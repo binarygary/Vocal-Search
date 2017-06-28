@@ -43,7 +43,7 @@ class VS_Search {
 	}
 
 	public function eq_scripts() {
-		wp_enqueue_script( 'annyang', $this->plugin->url . '/js/annyang.js', array() );
-		wp_enqueue_script( 'vocal-search', $this->plugin->url . '/js/components/main.js', array( 'jquery', 'annyang' ) );
+		wp_enqueue_script( 'annyang', $this->plugin->url . 'assets/js/annyang.js', array() );
+		wp_enqueue_script( 'vocal-search', $this->plugin->url . 'assets/js/components/main.js', array( 'jquery' ) );
 	}
 }
