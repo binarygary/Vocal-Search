@@ -21,6 +21,10 @@ class VS_Search_Form_Parser {
 	 */
 	protected $plugin = null;
 
+	protected $search_form = null;
+
+	protected $form_dom = null;
+
 	/**
 	 * Constructor.
 	 *
@@ -39,6 +43,26 @@ class VS_Search_Form_Parser {
 	 * @since  0.1.0
 	 */
 	public function hooks() {
+	}
 
+	private function get_search_form() {
+		$this->search_form = get_search_form( false );
+	}
+
+	private function setup_search_dom() {
+		if ( null === $this->search_form ) {
+			$this->get_search_form();
+		}
+
+		$this->form_dom = new DOMDocument();
+		$this->form_dom->loadHTML( $this->search_form );
+	}
+
+	public function get_form_selector() {
+		if ( null === $this->form_dom ) {
+			$this->setup_search_dom();
+		}
+
+		$forms = $this->form_dom->getElementsByTagName("form");
 	}
 }

@@ -69,6 +69,14 @@ class VS_Setup {
 	}
 
 	protected function setup_form_selector() {
+		if ( isset( $this->settings['form'] ) && ! empty( $this->settings ) ) {
+			return $this->settings['form'];
+		}
+
+		$this->plugin->search_form_parser->get_form_selector();
+	}
+
+	protected function setup_input_selector() {
 
 	}
 }
