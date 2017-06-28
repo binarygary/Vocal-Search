@@ -57,6 +57,9 @@ class VS_Setup {
 		$this->form_selector  = $this->setup_form_selector();
 		$this->input_selector = $this->setup_input_selector();
 
+//		update_option( 'vocal_search_settings', array(
+//			''
+//		));
 	}
 
 	protected function setup_phrase() {
@@ -69,14 +72,18 @@ class VS_Setup {
 	}
 
 	protected function setup_form_selector() {
-		if ( isset( $this->settings['form'] ) && ! empty( $this->settings ) ) {
+		if ( isset( $this->settings['form'] ) && ! empty( $this->settings['form'] ) ) {
 			return $this->settings['form'];
 		}
 
-		$this->plugin->search_form_parser->get_form_selector();
+		return $this->plugin->search_form_parser->get_form_selector();
 	}
 
 	protected function setup_input_selector() {
+		if ( isset( $this->settings['input'] ) && ! empty( $this->settings['input'] ) ) {
+			return $this->settings['input'];
+		}
 
+		return $this->plugin->search_form_parser->get_form_selector();
 	}
 }
