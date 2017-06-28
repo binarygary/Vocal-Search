@@ -57,13 +57,15 @@ class VS_Setup {
 		$this->form_selector  = $this->setup_form_selector();
 		$this->input_selector = $this->setup_input_selector();
 
-//		update_option( 'vocal_search_settings', array(
-//			''
-//		));
+		update_option( 'vocal_search_settings', array(
+			'phrase' => $this->phrase,
+			'form'   => $this->form_selector,
+			'input'  => $this->input_selector,
+		) );
 	}
 
 	protected function setup_phrase() {
-		if ( isset( $this->settings['phrase'] ) && ! empty( $this->settings ) ) {
+		if ( isset( $this->settings['phrase'] ) && ! empty( $this->settings['phrase'] ) ) {
 			return $this->settings['phrase'];
 		}
 

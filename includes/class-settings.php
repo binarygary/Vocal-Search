@@ -36,7 +36,7 @@ class VS_Settings {
 	 * @var    string
 	 * @since  0.1.0
 	 */
-	protected $metabox_id = 'vocal_search_settings';
+	protected $metabox_id = 'vocal_search_settings_metabox';
 
 	/**
 	 * Options Page title.
@@ -138,7 +138,7 @@ class VS_Settings {
 			'cmb_styles' => false,
 			'show_on'    => array(
 				// These are important, don't remove.
-				'key'   => 'vocal-search',
+				'key'   => 'options-page',
 				'value' => array( $this->key ),
 			),
 		) );
