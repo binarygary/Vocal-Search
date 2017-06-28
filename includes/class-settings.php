@@ -36,7 +36,7 @@ class VS_Settings {
 	 * @var    string
 	 * @since  0.1.0
 	 */
-	protected $metabox_id = 'vocal_search_settings_metabox';
+	protected $metabox_id = 'vocal_search_settings';
 
 	/**
 	 * Options Page title.
@@ -138,18 +138,33 @@ class VS_Settings {
 			'cmb_styles' => false,
 			'show_on'    => array(
 				// These are important, don't remove.
-				'key'   => 'options-page',
+				'key'   => 'vocal-search',
 				'value' => array( $this->key ),
 			),
 		) );
 
 		// Add your fields here.
 		$cmb->add_field( array(
-			'name'    => __( 'Test Text', 'vocal-search' ),
-			'desc'    => __( 'field description (optional)', 'vocal-search' ),
-			'id'      => 'test_text', // No prefix needed.
+			'name'    => __( 'Search Phrase', 'vocal-search' ),
+			'desc'    => __( 'What phrase should we listen for? "search for", "find me", or "get" are good options', 'vocal-search' ),
+			'id'      => 'phrase', // No prefix needed.
 			'type'    => 'text',
-			'default' => __( 'Default Text', 'vocal-search' ),
+		) );
+
+		// Add your fields here.
+		$cmb->add_field( array(
+			'name'    => __( 'Form Selector', 'vocal-search' ),
+			'desc'    => __( 'Vocal Search attempts to set this dynamically. Don\'t change these without a good reason', 'vocal-search' ),
+			'id'      => 'form', // No prefix needed.
+			'type'    => 'text',
+		) );
+
+		// Add your fields here.
+		$cmb->add_field( array(
+			'name'    => __( 'Input Selector', 'vocal-search' ),
+			'desc'    => __( 'Vocal Search attempts to set this dynamically. Don\'t change these without a good reason', 'vocal-search' ),
+			'id'      => 'input', // No prefix needed.
+			'type'    => 'text',
 		) );
 
 	}
