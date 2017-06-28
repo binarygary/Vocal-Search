@@ -86,6 +86,6 @@ class VS_Setup {
 			return $this->settings['input'];
 		}
 
-		return $this->plugin->search_form_parser->get_form_selector();
+		return $this->plugin->search_form_parser->get_input_selector();
 	}
 }

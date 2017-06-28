@@ -154,7 +154,7 @@ class VS_Settings {
 		// Add your fields here.
 		$cmb->add_field( array(
 			'name'    => __( 'Form Selector', 'vocal-search' ),
-			'desc'    => __( 'Vocal Search attempts to set this dynamically. Don\'t change these without a good reason', 'vocal-search' ),
+			'desc'    => __( 'Vocal Search attempts to set this dynamically. Don\'t change it without a good reason', 'vocal-search' ),
 			'id'      => 'form', // No prefix needed.
 			'type'    => 'text',
 		) );
@@ -162,7 +162,7 @@ class VS_Settings {
 		// Add your fields here.
 		$cmb->add_field( array(
 			'name'    => __( 'Input Selector', 'vocal-search' ),
-			'desc'    => __( 'Vocal Search attempts to set this dynamically. Don\'t change these without a good reason', 'vocal-search' ),
+			'desc'    => __( 'Vocal Search attempts to set this dynamically. Don\'t change it without a good reason', 'vocal-search' ),
 			'id'      => 'input', // No prefix needed.
 			'type'    => 'text',
 		) );
