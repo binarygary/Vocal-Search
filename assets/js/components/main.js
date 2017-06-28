@@ -8,7 +8,7 @@
 window.VocalSearch = window.VocalSearch || {};
 
 ( function ( window, document, $, plugin ) {
-	let $c = {};
+	var $c = {};
 
 	plugin.init = function () {
 		plugin.cache();
