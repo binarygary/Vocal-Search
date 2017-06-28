@@ -55,14 +55,33 @@ class VS_Search_Form_Parser {
 		}
 
 		$this->form_dom = new DOMDocument();
+		libxml_use_internal_errors( true );
+
 		$this->form_dom->loadHTML( $this->search_form );
 	}
 
 	public function get_form_selector() {
+		return $this->get_selector( 'form' );
+	}
+
+	public function get_input_selector() {
+		return $this->get_selector( 'input' );
+	}
+
+	private function get_selector( $tag ) {
 		if ( null === $this->form_dom ) {
 			$this->setup_search_dom();
 		}
 
-		$forms = $this->form_dom->getElementsByTagName("form");
+		foreach ( $this->form_dom->getElementsByTagName( $tag ) as $element ) {
+			$class = $element->getAttribute( 'class' );
+			$id    = $element->getAttribute( 'id' );
+		}
+
+		if ( $id ) {
+			return '#' . $id;
+		}
+
+		return '.' . $class;
 	}
 }
