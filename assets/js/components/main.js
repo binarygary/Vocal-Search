@@ -7,33 +7,33 @@
 
 window.VocalSearch = window.VocalSearch || {};
 
-( function( window, document, $, plugin ) {
+( function ( window, document, $, plugin ) {
 	let $c = {};
 
-	plugin.init = function() {
+	plugin.init = function () {
 		plugin.cache();
 		plugin.bindEvents();
 	};
 
-	plugin.cache = function() {
+	plugin.cache = function () {
 		$c.window = $( window );
-		$c.body = $( document.body );
+		$c.body   = $( document.body );
 		$c.search = $( '.search-field' );
 	};
 
-	plugin.bindEvents = function() {
-		$c.search.on('click', $c.listen);
+	plugin.bindEvents = function () {
+		$c.search.on( 'click', $c.listen );
 	};
 
-	$c.listen = function() {
+	$c.listen = function () {
 		var commands = {
-			'search for *term': function(term) {
+			'search for *term': function ( term ) {
 				$c.search.val( term );
-				$('form.search-form').submit();
+				$( 'form.search-form' ).submit();
 			}
 		};
 
-		annyang.addCommands(commands);
+		annyang.addCommands( commands );
 
 		annyang.start();
 	};
