@@ -13,7 +13,6 @@ window.VocalSearch = window.VocalSearch || {};
 	plugin.init = function () {
 		plugin.cache();
 		plugin.bindEvents();
-		console.log(vsSettings);
 	};
 
 	plugin.cache = function () {
@@ -25,6 +24,12 @@ window.VocalSearch = window.VocalSearch || {};
 	};
 
 	plugin.bindEvents = function () {
+		if (!annyang) {
+			return;
+		}
+
+		console.log(vsSettings.admin_commands);
+
 		if ( vsSettings.backend ) {
 			$( document ).ready( $c.listen() );
 		} else {

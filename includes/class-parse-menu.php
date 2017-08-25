@@ -55,7 +55,31 @@ class VS_Parse_Menu {
 			}
 		}
 
-		update_option( 'vocal_search_admin_commands', $commands, true );
+		$submenu_commands = array();
+
+		foreach ( $submenu as $parent => $submenu_item ) {
+			$submenu_commands = array_merge( $submenu_commands, $this->get_submenu_commands( $parent, $submenu_item, $commands ) );
+ 		}
+
+		update_option( 'vocal_search_admin_commands', array_merge( $commands, $submenu_commands ), true );
+	}
+
+	private function get_submenu_commands( $parent, $submenu, $commands ) {
+
+		$new_commands = array();
+
+		foreach ( $submenu as $item ) {
+			if ( in_array( $parent, $commands ) ) {
+				if ( 'Add New' == $item[0] ) {
+					$parent_menu_item = array_search( $parent, $commands );
+					$item[0] = $item[0] . ' ' . rtrim( $parent_menu_item, 's');
+				}
+
+				$new_commands[ $item[0] ] = $item[2];
+			}
+		}
+
+		return $new_commands;
 	}
 
 	private function get_commands( $menu_item ) {

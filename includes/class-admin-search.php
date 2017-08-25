@@ -113,20 +113,24 @@ class VS_Admin_Search {
 	}
 
 	public function search_results() {
-		echo '<h2>Search Results</h2>';
+		echo '<h2>Search Results for \'' . $_GET['s'] . '\'</h2>';
 
 		$posts = $this->get_posts();
+		?>
 
-		while ( $posts->have_posts() ) {
-			$posts->the_post();
-			the_title();
-			the_date();
-			the_author_posts_link();
-			echo get_post_status( get_the_ID() );
-			echo get_post_type( get_the_ID() );
-			the_content();
-		}
+		<?php while ( $posts->have_posts() ) : ?>
+			<?php $posts->the_post(); ?>
+			<div id="postbox-container-<?php echo get_the_ID(); ?>" class="postbox-container">
+				<h2><?php the_title(); ?></h2>
+				<div class="about"><?php the_date(); ?></div>
+				<div class="author"><?php the_author_posts_link(); ?></div>
+				<div class="status"><?php echo get_post_status( get_the_ID() ); ?></div>
+				<div class="post_type"><?php echo get_post_type( get_the_ID() ); ?></div>
+				<p><?php the_excerpt(); ?></p>
+			</div>
+		<?php endwhile; ?>
 
+		<?php
 		wp_reset_postdata();
 
 	}
