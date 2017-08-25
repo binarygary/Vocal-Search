@@ -55,11 +55,18 @@ class VS_Parse_Menu {
 			}
 		}
 
+		$cleansed_commands = array();
+		foreach ( $commands as $command => $url ) {
+			$command_array = explode( '<span', $command );
+			$cleansed_commands[trim($command_array[0])] = $url;
+		}
+		$commands = $cleansed_commands;
+
 		$submenu_commands = array();
 
 		foreach ( $submenu as $parent => $submenu_item ) {
 			$submenu_commands = array_merge( $submenu_commands, $this->get_submenu_commands( $parent, $submenu_item, $commands ) );
- 		}
+		}
 
 		update_option( 'vocal_search_admin_commands', array_merge( $commands, $submenu_commands ), true );
 	}
