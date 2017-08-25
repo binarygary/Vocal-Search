@@ -51,7 +51,7 @@ class VS_Parse_Menu {
 			$commands[] = $this->get_commands( $menu_item );
 		}
 
-		sleep( 4 );
+		//sleep( 4 );
 	}
 
 	public function get_commands( $menu_item ) {
