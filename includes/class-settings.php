@@ -168,4 +168,8 @@ class VS_Settings {
 		) );
 
 	}
+
+	public function get_setting( $key = '' ) {
+		return isset( get_option( $this->key, array() )[ $key ] ) ? get_option( $this->key, array() )[ $key ] : null;
+	}
 }
