@@ -55,20 +55,20 @@ class VS_Parse_Menu {
 			}
 		}
 
-		$cleansed_commands = array();
-		foreach ( $commands as $command => $url ) {
-			$command_array = explode( '<span', $command );
-			$cleansed_commands[trim($command_array[0])] = $url;
-		}
-		$commands = $cleansed_commands;
-
 		$submenu_commands = array();
 
 		foreach ( $submenu as $parent => $submenu_item ) {
 			$submenu_commands = array_merge( $submenu_commands, $this->get_submenu_commands( $parent, $submenu_item, $commands ) );
 		}
 
-		update_option( 'vocal_search_admin_commands', array_merge( $commands, $submenu_commands ), true );
+		$cleansed_commands = array();
+		foreach ( array_merge( $commands, $submenu_commands ) as $command => $url ) {
+			$command_array = explode( '<span', $command );
+			$cleansed_commands[ trim( $command_array[0] ) ] = $url;
+		}
+		$commands = $cleansed_commands;
+
+		update_option( 'vocal_search_admin_commands', $commands, true );
 	}
 
 	private function get_submenu_commands( $parent, $submenu, $commands ) {
@@ -79,7 +79,11 @@ class VS_Parse_Menu {
 			if ( in_array( $parent, $commands ) ) {
 				if ( 'Add New' == $item[0] ) {
 					$parent_menu_item = array_search( $parent, $commands );
-					$item[0] = $item[0] . ' ' . rtrim( $parent_menu_item, 's');
+					$item[0] = $item[0] . ' ' . rtrim( $parent_menu_item, 's' );
+				}
+
+				if ( strpos( $item[2], 'php' ) == false ) {
+					$item[2] = 'admin.php?page=' . $item[2];
 				}
 
 				$new_commands[ $item[0] ] = $item[2];
