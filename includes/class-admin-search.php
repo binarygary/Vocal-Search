@@ -116,16 +116,30 @@ class VS_Admin_Search {
 		echo '<h2>Search Results</h2>';
 
 		$posts = $this->get_posts();
+
+		while ( $posts->have_posts() ) {
+			$posts->the_post();
+			the_title();
+			the_date();
+			the_author_posts_link();
+			echo get_post_status( get_the_ID() );
+			echo get_post_type( get_the_ID() );
+			the_content();
+		}
+
+		wp_reset_postdata();
+
 	}
 
 	private function get_posts() {
 		$args = array(
-			'post_type' => $this->get_post_types(),
-			's' => $_GET['s'],
-			'post_status' => $this->get_post_stati(),
+			'post_type'      => $this->get_post_types(),
+			's'              => $_GET['s'],
+			'post_status'    => $this->get_post_stati(),
+			'posts_per_page' => 100,
 		);
 
-		$posts = new WP_Query( $args);
+		$posts = new WP_Query( $args );
 		return $posts;
 	}
 
