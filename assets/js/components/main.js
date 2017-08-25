@@ -50,6 +50,18 @@ window.VocalSearch = window.VocalSearch || {};
 			}
 			sorted.sort();
 
+			admin_commands = $.map(vsSettings.admin_commands, function (value, key) { return key; });
+
+			sorted.forEach( function( phrase ) {
+				console.log(phrase);
+				console.log(admin_commands);
+				admin_commands.forEach( function( admin_command ) {
+					if ( admin_command.toLowerCase() === phrase ) {
+						window.location.href = vsSettings.admin_commands[admin_command];
+					}
+				} );
+			});
+
 			sorted.forEach( function( phrase ) {
 				var found = phrase.indexOf( $c.command.toLowerCase() );
 				if ( found !== -1 ) {

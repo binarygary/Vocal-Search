@@ -74,6 +74,7 @@ class VS_Search {
 			'search_form' => '#vocal-search',
 			'command' => $this->plugin->settings->get_setting( 'phrase' ),
 			'backend' => true,
+			'admin_commands' => $this->plugin->parse_menu->eq_commands(),
 		);
 	}
 }

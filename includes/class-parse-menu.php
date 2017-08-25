@@ -21,6 +21,8 @@ class VS_Parse_Menu {
 	 */
 	protected $plugin = null;
 
+	protected $commands = array();
+
 	/**
 	 * Constructor.
 	 *
@@ -48,15 +50,21 @@ class VS_Parse_Menu {
 		$commands = array();
 
 		foreach ( $menu as $menu_item ) {
-			$commands[] = $this->get_commands( $menu_item );
+			if ( key( $this->get_commands( $menu_item ) ) ) {
+				$commands[ key( $this->get_commands( $menu_item ) ) ] = $this->get_commands( $menu_item )[ key( $this->get_commands( $menu_item ) ) ];
+			}
 		}
 
-		//sleep( 4 );
+		update_option( 'vocal_search_admin_commands', $commands, true );
 	}
 
-	public function get_commands( $menu_item ) {
+	private function get_commands( $menu_item ) {
 		$command[ $menu_item[0] ] = $menu_item[2];
 
 		return $command;
+	}
+
+	public function eq_commands() {
+		return get_option( 'vocal_search_admin_commands' );
 	}
 }
