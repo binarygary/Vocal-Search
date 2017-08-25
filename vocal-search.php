@@ -163,6 +163,14 @@ final class Vocal_Search {
 	protected $admin_search;
 
 	/**
+	 * Instance of VS_Admin_Search_Input
+	 *
+	 * @since0.1.0
+	 * @var VS_Admin_Search_Input
+	 */
+	protected $admin_search_input;
+
+	/**
 	 * Creates or returns an instance of this class.
 	 *
 	 * @since   0.1.0
@@ -200,6 +208,7 @@ final class Vocal_Search {
 		$this->search_form_parser = new VS_Search_Form_Parser( $this );
 		$this->parse_menu = new VS_Parse_Menu( $this );
 		$this->admin_search = new VS_Admin_Search( $this );
+		$this->admin_search_input = new VS_Admin_Search_Input( $this );
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
@@ -361,6 +370,7 @@ final class Vocal_Search {
 			case 'search_form_parser':
 			case 'parse_menu':
 			case 'admin_search':
+			case 'admin_search_input':
 				return $this->$field;
 			default:
 				throw new Exception( 'Invalid ' . __CLASS__ . ' property: ' . $field );
