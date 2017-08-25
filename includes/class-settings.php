@@ -151,6 +151,13 @@ class VS_Settings {
 			'type'    => 'text',
 		) );
 
+		$cmb->add_field( array(
+			'type' => 'checkbox',
+			'name' => 'Display on frontend?',
+			'desc' => 'If unchecked audio search will ONLY be enqueued in wp-admin',
+			'id'   => 'make_public',
+		) );
+
 		// Add your fields here.
 		$cmb->add_field( array(
 			'name'    => __( 'Form Selector', 'vocal-search' ),

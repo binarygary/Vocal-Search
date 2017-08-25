@@ -25,7 +25,11 @@ window.VocalSearch = window.VocalSearch || {};
 	};
 
 	plugin.bindEvents = function () {
-		$c.search.on( 'click', $c.listen );
+		if ( vsSettings.backend ) {
+			$( document ).ready( $c.listen() );
+		} else {
+			$c.search.on( 'click', $c.listen );
+		}
 	};
 
 	$c.listen = function () {
@@ -49,9 +53,8 @@ window.VocalSearch = window.VocalSearch || {};
 			sorted.forEach( function( phrase ) {
 				var found = phrase.indexOf( $c.command.toLowerCase() );
 				if ( found !== -1 ) {
-					console.log( $c.command.substr( found ) );
-					$c.search.val( found );
-					$c.search.form.submit();
+					$c.search.val( phrase.split( $c.command.toLowerCase() ).pop() );
+					$c.form.submit();
 				}
 			});
 		});

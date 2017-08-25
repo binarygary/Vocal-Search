@@ -51,8 +51,9 @@ class VS_Admin_Search_Input {
 	}
 
 	private function get_input_markup() {
+		$search = isset( $_GET['s'] ) ? $_GET['s'] : '';
 		return '<form id="vocal-search" action="admin.php">
-					<input name="s" class="vocal-search-input">
+					<input name="s" class="vocal-search-input" value="' . $search . '">
 					<input name="page" value="vocal_search_admin_search" type="hidden">
 				</form>';
 	}
